@@ -20,6 +20,7 @@ public class EmployeeCreation {
 
 	@Before
 	public void setup() {
+
 		String reportPath = "report/";
 		extent = ExtentReportManager.getInstance(reportPath + "EmployeeCreationReport.html");
 		test = ExtentReportManager.startTest("Employee Creation Test");
@@ -31,7 +32,9 @@ public class EmployeeCreation {
 
 	@Test
 	public void testEmployeeCreation() throws IOException {
+
 		try {
+
 			LoginPage loginPage = LoginPage.getInstance();
 			loginPage.enterName();
 			loginPage.enterPassword();
@@ -57,17 +60,21 @@ public class EmployeeCreation {
 			test.pass("Login successful");
 			test.pass("Employee creation successful");
 			test.pass("Test Passed");
+
 		}
 		catch (Exception e) {
-			// Report test failure
+
 			test.fail("Test Failed: " + e.getMessage());
 			String screenshotPath = CommonUtils.getInstance().captureScreenshot();
 			test.addScreenCaptureFromPath(screenshotPath);
+
 		}
 	}
 
 	@After
 	public void tearDown() {
+
 		ExtentReportManager.endTest();
+
 	}
 }
